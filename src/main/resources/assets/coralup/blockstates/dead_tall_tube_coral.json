@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "coralup:block/dead_tall_tube_coral_bottom"
+    },
+    "half=upper": {
+      "model": "coralup:block/dead_tall_tube_coral_top"
+    }
+  }
+}

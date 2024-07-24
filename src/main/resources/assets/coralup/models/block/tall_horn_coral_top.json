@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "coralup:block/tall_horn_coral_top"
+  },
+  "render_type": "cutout"
+}
