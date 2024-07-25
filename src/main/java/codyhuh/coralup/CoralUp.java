@@ -1,6 +1,7 @@
 package codyhuh.coralup;
 
 import codyhuh.coralup.registry.CUBlocks;
+import codyhuh.coralup.registry.CUFeatures;
 import codyhuh.coralup.registry.CUItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -17,6 +18,7 @@ public class CoralUp {
 
         CUBlocks.BLOCKS.register(bus);
         CUItems.ITEMS.register(bus);
+        CUFeatures.FEATURES.register(bus);
 
         bus.addListener(this::populateTabs);
     }

@@ -1,0 +1,11 @@
+{
+  "type": "coralup:tall_bubble_coral",
+  "config": {
+    "state": {
+      "Name": "coralup:tall_bubble_coral",
+      "Properties": {
+        "half": "lower"
+      }
+    }
+  }
+}

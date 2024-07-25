@@ -1,0 +1,11 @@
+{
+  "type": "coralup:tall_horn_coral",
+  "config": {
+    "state": {
+      "Name": "coralup:tall_horn_coral",
+      "Properties": {
+        "half": "lower"
+      }
+    }
+  }
+}

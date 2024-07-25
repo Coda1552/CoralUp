@@ -1,0 +1,125 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:horn_coral",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2,
+                  "add": false
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "coralup:tall_horn_coral",
+          "properties": {
+            "half": "lower"
+          }
+        },
+        {
+          "condition": "minecraft:location_check",
+          "offsetY": 1,
+          "predicate": {
+            "block": {
+              "blocks": [
+                "coralup:tall_horn_coral"
+              ],
+              "state": {
+                "half": "upper"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:horn_coral",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2,
+                  "add": false
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "coralup:tall_horn_coral",
+          "properties": {
+            "half": "upper"
+          }
+        },
+        {
+          "condition": "minecraft:location_check",
+          "offsetY": -1,
+          "predicate": {
+            "block": {
+              "blocks": [
+                "coralup:tall_horn_coral"
+              ],
+              "state": {
+                "half": "lower"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

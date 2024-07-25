@@ -1,0 +1,11 @@
+{
+  "type": "coralup:tall_fire_coral",
+  "config": {
+    "state": {
+      "Name": "coralup:tall_fire_coral",
+      "Properties": {
+        "half": "lower"
+      }
+    }
+  }
+}

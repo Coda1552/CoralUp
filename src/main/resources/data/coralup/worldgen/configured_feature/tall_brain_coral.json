@@ -1,0 +1,11 @@
+{
+  "type": "coralup:tall_brain_coral",
+  "config": {
+    "state": {
+      "Name": "coralup:tall_brain_coral",
+      "Properties": {
+        "half": "lower"
+      }
+    }
+  }
+}

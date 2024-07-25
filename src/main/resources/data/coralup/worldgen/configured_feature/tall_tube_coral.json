@@ -1,0 +1,11 @@
+{
+  "type": "coralup:tall_tube_coral",
+  "config": {
+    "state": {
+      "Name": "coralup:tall_tube_coral",
+      "Properties": {
+        "half": "lower"
+      }
+    }
+  }
+}
