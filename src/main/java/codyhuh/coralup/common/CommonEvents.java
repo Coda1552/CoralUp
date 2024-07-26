@@ -42,6 +42,14 @@ public class CommonEvents {
             hashMap.put(Blocks.TUBE_CORAL, CUBlocks.TALL_TUBE_CORAL.get());
         });
 
+        Map<Block, Block> bushyCoralMap = Util.make(Maps.newHashMap(), (hashMap) -> {
+            hashMap.put(Blocks.BRAIN_CORAL_FAN, CUBlocks.BUSHY_BRAIN_CORAL.get());
+            hashMap.put(Blocks.FIRE_CORAL_FAN, CUBlocks.BUSHY_FIRE_CORAL.get());
+            hashMap.put(Blocks.BUBBLE_CORAL_FAN, CUBlocks.BUSHY_BUBBLE_CORAL.get());
+            hashMap.put(Blocks.HORN_CORAL_FAN, CUBlocks.BUSHY_HORN_CORAL.get());
+            hashMap.put(Blocks.TUBE_CORAL_FAN, CUBlocks.BUSHY_TUBE_CORAL.get());
+        });
+
         if (stack.getItem() instanceof BoneMealItem && state.is(BlockTags.CORAL_PLANTS) && level.getBlockState(pos.above()).canBeReplaced()) {
             BoneMealItem.addGrowthParticles(level, pos, 15);
 
@@ -50,6 +58,21 @@ public class CommonEvents {
             level.playLocalSound(pos, SoundEvents.BONE_MEAL_USE, SoundSource.PLAYERS, 1.0F, 1.0F, true);
             level.setBlock(pos, newState.setValue(TallCoralBlock.HALF, DoubleBlockHalf.LOWER), -1);
             level.setBlock(pos.above(), newState.setValue(TallCoralBlock.HALF, DoubleBlockHalf.UPPER), -1);
+
+            player.swing(e.getHand());
+
+            if (!player.isCreative()) {
+                stack.shrink(1);
+            }
+        }
+
+        if (stack.getItem() instanceof BoneMealItem && bushyCoralMap.containsKey(state.getBlock()) && level.getBlockState(pos.above()).canBeReplaced()) {
+            BoneMealItem.addGrowthParticles(level, pos, 15);
+
+            BlockState newState = bushyCoralMap.get(state.getBlock()).defaultBlockState();
+
+            level.playLocalSound(pos, SoundEvents.BONE_MEAL_USE, SoundSource.PLAYERS, 1.0F, 1.0F, true);
+            level.setBlock(pos, newState, -1);
 
             player.swing(e.getHand());
 

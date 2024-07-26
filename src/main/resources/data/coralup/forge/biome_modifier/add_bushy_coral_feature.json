@@ -1,0 +1,12 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:warm_ocean",
+  "features": [
+    "coralup:bushy_brain_coral",
+    "coralup:bushy_tube_coral",
+    "coralup:bushy_horn_coral",
+    "coralup:bushy_fire_coral",
+    "coralup:bushy_bubble_coral"
+  ],
+  "step": "vegetal_decoration"
+}
