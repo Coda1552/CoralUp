@@ -27,12 +27,12 @@ import net.minecraft.world.level.material.Fluids;
 
 import javax.annotation.Nullable;
 
-public class TallCoralBlock extends CoralPlantBlock {
+public class TallCoralBlock extends BaseTallCoralBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     private final Block deadBlock;
 
     public TallCoralBlock(Block block, BlockBehaviour.Properties p_52861_) {
-        super(block, p_52861_);
+        super(p_52861_);
         this.deadBlock = block;
         this.registerDefaultState(this.stateDefinition.any().setValue(HALF, DoubleBlockHalf.LOWER));
     }

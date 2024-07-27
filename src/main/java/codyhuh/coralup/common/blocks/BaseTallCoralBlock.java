@@ -8,6 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
@@ -44,11 +46,9 @@ public class BaseTallCoralBlock extends BaseCoralPlantBlock {
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext p_52863_) {
-        BlockPos blockpos = p_52863_.getClickedPos();
-        Level level = p_52863_.getLevel();
-        FluidState fluidstate = p_52863_.getLevel().getFluidState(p_52863_.getClickedPos());
-        return blockpos.getY() < level.getMaxBuildHeight() - 1 && level.getBlockState(blockpos.above()).canBeReplaced(p_52863_) ? super.getStateForPlacement(p_52863_).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.is(FluidTags.WATER) && fluidstate.getAmount() == 8)) : null;
+    public BlockState getStateForPlacement(BlockPlaceContext p_49163_) {
+        FluidState fluidstate = p_49163_.getLevel().getFluidState(p_49163_.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(fluidstate.is(FluidTags.WATER) && fluidstate.getAmount() == 8));
     }
 
     public void setPlacedBy(Level p_52872_, BlockPos p_52873_, BlockState p_52874_, LivingEntity p_52875_, ItemStack p_52876_) {
@@ -66,14 +66,8 @@ public class BaseTallCoralBlock extends BaseCoralPlantBlock {
         }
     }
 
-    public static void placeAt(LevelAccessor p_153174_, BlockState p_153175_, BlockPos p_153176_, int p_153177_) {
-        BlockPos blockpos = p_153176_.above();
-        p_153174_.setBlock(p_153176_, copyWaterloggedFrom(p_153174_, p_153176_, p_153175_.setValue(HALF, DoubleBlockHalf.LOWER)), p_153177_);
-        p_153174_.setBlock(blockpos, copyWaterloggedFrom(p_153174_, blockpos, p_153175_.setValue(HALF, DoubleBlockHalf.UPPER)), p_153177_);
-    }
-
     public static BlockState copyWaterloggedFrom(LevelReader p_182454_, BlockPos p_182455_, BlockState p_182456_) {
-        return p_182456_.hasProperty(BlockStateProperties.WATERLOGGED) ? p_182456_.setValue(BlockStateProperties.WATERLOGGED, Boolean.valueOf(p_182454_.isWaterAt(p_182455_))) : p_182456_;
+        return p_182456_.hasProperty(BlockStateProperties.WATERLOGGED) ? p_182456_.setValue(BlockStateProperties.WATERLOGGED, p_182454_.isWaterAt(p_182455_)) : p_182456_;
     }
 
     public void playerWillDestroy(Level p_52878_, BlockPos p_52879_, BlockState p_52880_, Player p_52881_) {
@@ -81,7 +75,7 @@ public class BaseTallCoralBlock extends BaseCoralPlantBlock {
             if (p_52881_.isCreative()) {
                 preventCreativeDropFromBottomPart(p_52878_, p_52879_, p_52880_, p_52881_);
             } else {
-                dropResources(p_52880_, p_52878_, p_52879_, (BlockEntity)null, p_52881_, p_52881_.getMainHandItem());
+                dropResources(p_52880_, p_52878_, p_52879_, null, p_52881_, p_52881_.getMainHandItem());
             }
         }
 
@@ -103,7 +97,10 @@ public class BaseTallCoralBlock extends BaseCoralPlantBlock {
                 p_52904_.levelEvent(p_52907_, 2001, blockpos, Block.getId(blockstate));
             }
         }
+    }
 
+    public FluidState getFluidState(BlockState p_49191_) {
+        return p_49191_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_49191_);
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_52901_) {
